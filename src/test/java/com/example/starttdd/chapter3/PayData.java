@@ -1,13 +1,17 @@
 package com.example.starttdd.chapter3;
 
 import java.time.LocalDate;
-import java.util.Locale;
 
 public class PayData {
+    private LocalDate firstBillingDate;
     private LocalDate billingDate;
     private int payAmount;
 
-    public PayData(final LocalDate billingDate, final int payAmount) {
+    public PayData() {
+    }
+
+    public PayData(final LocalDate firstBillingDate, final LocalDate billingDate, final int payAmount) {
+        this.firstBillingDate = firstBillingDate;
         this.billingDate = billingDate;
         this.payAmount = payAmount;
     }
@@ -25,8 +29,14 @@ public class PayData {
     }
 
     public static class Builder {
+        private LocalDate firstBillingDate;
         private LocalDate billingDate;
         private int payAmount;
+
+        public Builder firstBillingDate(LocalDate firstBillingDate) {
+            this.firstBillingDate = firstBillingDate;
+            return this;
+        }
 
         public Builder billingDate(LocalDate billingDate) {
             this.billingDate = billingDate;
@@ -39,7 +49,7 @@ public class PayData {
         }
 
         public PayData build() {
-            return new PayData(billingDate, payAmount);
+            return new PayData(firstBillingDate, billingDate, payAmount);
         }
     }
 }
