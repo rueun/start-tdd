@@ -119,6 +119,81 @@ class ExpiryDateCalculatorTest {
                 .payAmount(100_000)
                 .build();
         assertExpiryDate(payData, LocalDate.of(2020, 1, 28));
+
+        PayData payData2 = PayData.builder()
+                .billingDate(LocalDate.of(2024, 2, 29))
+                .payAmount(100_000)
+                .build();
+        assertExpiryDate(payData2, LocalDate.of(2025, 2, 28));
+    }
+
+    @Test
+    void 십만원을_납부하면_1년_제공_첫_납부일과_만료일_일자가_다를_때() {
+        PayData payData = PayData.builder()
+                .firstBillingDate(LocalDate.of(2019, 1, 31))
+                .billingDate(LocalDate.of(2019, 2, 28))
+                .payAmount(100_000)
+                .build();
+        assertExpiryDate(payData, LocalDate.of(2020, 2, 29));
+
+        PayData payData2 = PayData.builder()
+                .firstBillingDate(LocalDate.of(2020, 1, 31))
+                .billingDate(LocalDate.of(2020, 2, 29))
+                .payAmount(100_000)
+                .build();
+        assertExpiryDate(payData2, LocalDate.of(2021, 2, 28));
+    }
+
+    @Test
+    void 십만원_이상_납부하는_경우_계산() {
+        PayData payData = PayData.builder()
+                .billingDate(LocalDate.of(2019, 1, 31))
+                .payAmount(110_000)
+                .build();
+        assertExpiryDate(payData, LocalDate.of(2020, 2, 29));
+
+        PayData payData2 = PayData.builder()
+                .billingDate(LocalDate.of(2019, 1, 31))
+                .payAmount(210_000)
+                .build();
+        assertExpiryDate(payData2, LocalDate.of(2021, 2, 28));
+
+        PayData payData3 = PayData.builder()
+                .billingDate(LocalDate.of(2019, 1, 31))
+                .payAmount(230_000)
+                .build();
+        assertExpiryDate(payData3, LocalDate.of(2021, 4, 30));
+    }
+
+    @Test
+    void 첫_납부일과_만료일_일자가_다를_때_십만원_이상_납부() {
+        PayData payData = PayData.builder()
+                .firstBillingDate(LocalDate.of(2019, 1, 31))
+                .billingDate(LocalDate.of(2019, 2, 28))
+                .payAmount(110_000)
+                .build();
+        assertExpiryDate(payData, LocalDate.of(2020, 3, 31));
+
+        PayData payData2 = PayData.builder()
+                .firstBillingDate(LocalDate.of(2019, 1, 31))
+                .billingDate(LocalDate.of(2019, 2, 28))
+                .payAmount(210_000)
+                .build();
+        assertExpiryDate(payData2, LocalDate.of(2021, 3, 31));
+
+        PayData payData3 = PayData.builder()
+                .firstBillingDate(LocalDate.of(2019, 1, 31))
+                .billingDate(LocalDate.of(2019, 2, 28))
+                .payAmount(230_000)
+                .build();
+        assertExpiryDate(payData3, LocalDate.of(2021, 5, 31));
+
+        PayData payData4 = PayData.builder()
+                .firstBillingDate(LocalDate.of(2018, 1, 30))
+                .billingDate(LocalDate.of(2018, 2, 28))
+                .payAmount(200_000)
+                .build();
+        assertExpiryDate(payData4, LocalDate.of(2020, 2, 29));
     }
 
     private void assertExpiryDate(PayData payData, LocalDate expectedExpiryDate) {
