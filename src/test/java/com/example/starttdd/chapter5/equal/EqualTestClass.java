@@ -1,4 +1,4 @@
-package com.example.starttdd.chapter5;
+package com.example.starttdd.chapter5.equal;
 
 public class EqualTestClass {
     private final int num;

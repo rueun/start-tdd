@@ -1,4 +1,4 @@
-package com.example.starttdd.chapter5;
+package com.example.starttdd.chapter5.equal;
 
 import org.junit.jupiter.api.Test;
 
