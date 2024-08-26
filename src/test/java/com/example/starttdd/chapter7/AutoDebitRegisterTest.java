@@ -1,6 +1,7 @@
 package com.example.starttdd.chapter7;
 
 
+import com.example.starttdd.chapter7.stub.StubAutoDebitInfoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ class AutoDebitRegisterTest {
 
     @BeforeEach
     void setUp() {
-        AutoDebitInfoRepository repository = new AutoDebitInfoRepository();
+        AutoDebitInfoRepository repository = new StubAutoDebitInfoRepository();
         CardNumberValidator validator = new CardNumberValidator();
         register = new AutoDebitRegister(validator, repository);
     }

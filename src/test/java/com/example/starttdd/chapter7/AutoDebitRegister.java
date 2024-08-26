@@ -1,5 +1,7 @@
 package com.example.starttdd.chapter7;
 
+import java.time.LocalDateTime;
+
 public class AutoDebitRegister {
     private final CardNumberValidator validator;
     private final AutoDebitInfoRepository repository;
@@ -19,7 +21,7 @@ public class AutoDebitRegister {
         if (info != null) {
             info.changeCardNumber(req.getCardNumber());
         } else {
-            info = new AutoDebitInfo(req.getUserId(), req.getCardNumber());
+            info = new AutoDebitInfo(req.getUserId(), req.getCardNumber(), LocalDateTime.now());
         }
         repository.save(info);
         return RegisterResult.success();
