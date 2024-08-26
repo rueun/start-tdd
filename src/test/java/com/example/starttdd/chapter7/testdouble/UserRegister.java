@@ -1,8 +1,5 @@
 package com.example.starttdd.chapter7.testdouble;
 
-import com.example.starttdd.chapter7.testdouble.stub.WeakPasswordChecker;
-import com.example.starttdd.chapter7.testdouble.stub.WeakPasswordException;
-
 public class UserRegister {
 
     private WeakPasswordChecker passwordChecker;
