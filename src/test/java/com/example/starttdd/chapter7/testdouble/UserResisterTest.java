@@ -7,8 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class UserResisterTest {
 
@@ -53,5 +52,16 @@ class UserResisterTest {
         // 저장된 사용자 정보가 일치하는지 확인
         assertEquals("id", savedUser.getId());
         assertEquals("email", savedUser.getEmail());
+    }
+
+    @DisplayName("가입하면 이메일을 전송함")
+    @Test
+    void whenRegisterThenSendMail() {
+        userResister.register("id", "pw", "email@email.com");
+
+        // 이메일을 전송했는지 확인
+        assertTrue(spyEmailNotifier.isCalled());
+        assertEquals("email@email.com", spyEmailNotifier.getEmail()));
+
     }
 }
