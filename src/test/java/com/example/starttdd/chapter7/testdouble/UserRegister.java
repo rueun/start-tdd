@@ -22,5 +22,7 @@ public class UserRegister {
             .ifPresent(user -> {
                 throw new DupIdException();
             });
+
+        userRepository.save(new User(id, pw, email));
     }
 }

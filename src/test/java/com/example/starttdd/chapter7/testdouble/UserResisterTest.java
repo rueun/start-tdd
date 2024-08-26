@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UserResisterTest {
@@ -39,5 +40,17 @@ class UserResisterTest {
         assertThrows(DupIdException.class, () -> {
             userResister.register("id", "pw2", "email");
         });
+    }
+
+    @DisplayName("같은 ID가 없으면 가입 성공")
+    @Test
+    void noDupId_RegisterSuccess() {
+        userResister.register("id", "pw", "email");
+
+        User savedUser = fakeRepository.findById("id").get();
+
+        // 저장된 사용자 정보가 일치하는지 확인
+        assertEquals("id", savedUser.getId());
+        assertEquals("email", savedUser.getEmail());
     }
 }
