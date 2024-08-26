@@ -1,6 +1,7 @@
 package com.example.starttdd.chapter7.testdouble;
 
 import com.example.starttdd.chapter7.testdouble.fake.MemoryUserRepository;
+import com.example.starttdd.chapter7.testdouble.spy.SpyEmailNotifier;
 import com.example.starttdd.chapter7.testdouble.stub.StubWeakPasswordChecker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -60,7 +61,7 @@ class UserResisterTest {
 
         // 이메일을 전송했는지 확인
         assertTrue(spyEmailNotifier.isCalled());
-        assertEquals("email@email.com", spyEmailNotifier.getEmail()));
+        assertEquals("email@email.com", spyEmailNotifier.getEmail());
 
     }
 }
