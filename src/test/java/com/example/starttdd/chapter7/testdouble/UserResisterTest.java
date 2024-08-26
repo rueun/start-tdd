@@ -8,12 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UserResisterTest {
 
-    private UserResister userResister;
+    private UserRegister userResister;
     private StubWeakPasswordChecker stubWeakPasswordChecker = new StubWeakPasswordChecker();
 
     @BeforeEach
     void setUp() {
-        userResister = new UserResister(stubWeakPasswordChecker);
+        userResister = new UserRegister(stubWeakPasswordChecker);
     }
 
     @DisplayName("약한 암호면 가입 실패")
