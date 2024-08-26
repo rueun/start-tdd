@@ -1,5 +1,7 @@
 package com.example.starttdd.chapter7.testdouble;
 
+import com.example.starttdd.chapter7.testdouble.stub.StubWeakPasswordChecker;
+import com.example.starttdd.chapter7.testdouble.stub.WeakPasswordException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +12,7 @@ class UserResisterTest {
 
     private UserRegister userResister;
     private StubWeakPasswordChecker stubWeakPasswordChecker = new StubWeakPasswordChecker();
+
 
     @BeforeEach
     void setUp() {
