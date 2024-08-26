@@ -15,11 +15,12 @@ class UserResisterTest {
     private UserRegister userResister;
     private StubWeakPasswordChecker stubWeakPasswordChecker = new StubWeakPasswordChecker();
     private MemoryUserRepository fakeRepository = new MemoryUserRepository();
+    private SpyEmailNotifier spyEmailNotifier = new SpyEmailNotifier();
 
 
     @BeforeEach
     void setUp() {
-        userResister = new UserRegister(stubWeakPasswordChecker, fakeRepository);
+        userResister = new UserRegister(stubWeakPasswordChecker, fakeRepository, spyEmailNotifier);
     }
 
     @DisplayName("약한 암호면 가입 실패")
