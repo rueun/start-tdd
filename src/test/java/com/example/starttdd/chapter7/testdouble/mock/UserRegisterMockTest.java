@@ -11,7 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.only;
 
 class UserRegisterMockTest {
     private UserRegister userRegister;
@@ -34,5 +36,15 @@ class UserRegisterMockTest {
         assertThrows(WeakPasswordException.class, () -> {
             userRegister.register("id", "pw", "email");
         });
+    }
+
+    @DisplayName("회원가입 시 암호 검사 수행됨")
+    @Test
+    void checkPassword() {
+        userRegister.register("id", "pw", "email");
+
+        then(mockPassWordChecker)
+                .should(only())
+                .checkPasswordWeak("pw");
     }
 }
