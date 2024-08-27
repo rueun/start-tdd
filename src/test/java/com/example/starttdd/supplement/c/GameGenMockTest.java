@@ -10,9 +10,9 @@ class GameGenMockTest {
     @Test
     void mockTest() {
         GameNumGen genMock = Mockito.mock(GameNumGen.class);
-        BDDMockito.given(genMock.generate(new GameLevel())).willReturn("123");
+        BDDMockito.given(genMock.generate(GameLevel.EASY)).willReturn("123");
 
-        String num = genMock.generate(new GameLevel());
+        String num = genMock.generate(GameLevel.EASY);
         assertEquals("123", num);
     }
 }

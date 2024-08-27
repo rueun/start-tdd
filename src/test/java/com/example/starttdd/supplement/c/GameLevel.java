@@ -1,4 +1,5 @@
 package com.example.starttdd.supplement.c;
 
-public class GameLevel {
+public enum GameLevel {
+    EASY, NORMAL, HARD
 }
